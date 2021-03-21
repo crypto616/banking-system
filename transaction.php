@@ -2,6 +2,11 @@
     session_start();
     require_once("connection.php");
 
+
+    if(isset($_SESSION['transaction_successfull'])){
+        header('Location: reciept.php');
+        exit;
+    }
     //variable declaration
     $control = 0;
     $recipient_account_num_error = '';
@@ -16,14 +21,24 @@
         $customer_id = $_GET['c_id'];
         $sql = "SELECT name, account_num, current_balance FROM customers WHERE customer_id='$customer_id'";
         $result = $conn->query($sql);
-        $row = $result->fetch_assoc();
-        $sender_name = $row['name'];
-        $sender_acc_num = $row['account_num'];
-        $sender_balance = $row['current_balance'];
+        if($result->num_rows == 1){
+            $row = $result->fetch_assoc();
+            $sender_name = $row['name'];
+            $sender_acc_num = $row['account_num'];
+            $sender_balance = $row['current_balance'];
+        }
+        else {
+            header('Location: index.php');
+            $_SESSION['message'] = 'No customer exist with the given ID';
+            $_SESSION['message-css'] = 'error-msg';
+            exit;
+        }
     }
     //if the customer_id is wrong, the client is redirected back to the home page
     else{
-        header('home-page.php');
+        $_SESSION['message'] = 'No customer exist with the given ID';
+        $_SESSION['message-css'] = 'error-msg';
+        header('Location: index.php');
         exit;
     }
 
@@ -94,7 +109,7 @@
             $sql = "SELECT * FROM transactions ORDER BY transaction_id DESC LIMIT 0, 1";
             $result = $conn->query($sql);
             $row = $result->fetch_assoc();
-            
+            $_SESSION['transaction_successfull'] = true;
             $_SESSION['success_msg'] = 'Transaction successful';
             $_SESSION['sender_account_num'] = $sender_acc_num;
             $_SESSION['recipient_account_num'] = $recipient_account_num;

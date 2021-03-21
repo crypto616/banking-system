@@ -1,5 +1,6 @@
 <?php
     //connecting to db
+    session_start();
     require_once('connection.php');
 
     //PHP script to take data out of db
@@ -25,17 +26,26 @@
     </script>
 </head>
 <body>
+    <img src="public/CSS/transactionbg.jpg" class="index-bg">
     <div class="main">
 
     <div class="wrapper1">
         <div class="header-text" id="head">
             CADENCE BANK
         </div>
-        <div class="header-text" id="side">
-            Home
-        </div>
     </div>
         <button id="view-customer" type="toggle" onclick="show_customers()">View Customers</button>
+        <?php 
+            if(isset($_SESSION['message'])){
+                ?>
+                <div class="message <?php echo $_SESSION['message-css'] ?>">
+                    <?php echo $_SESSION['message']; ?>
+                </div>
+                <?php
+                unset($_SESSION['message']);
+                unset($_SESSION['message-css']);
+            }
+        ?>
         <div class="table-container">
             <table>
                 <thead>

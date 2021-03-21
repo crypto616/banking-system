@@ -1,7 +1,13 @@
 <?php 
     require_once('connection.php');
     session_start();
-
+    
+    if(!isset($_SESSION['transaction_successfull'])){
+        $_SESSION['message'] = 'No transaction has been processed!';
+        $_SESSION['message-css'] = 'error-msg';
+        header('Location: index.php');
+        exit;
+    }
     $success_msg = $_SESSION['success_msg'];
     $sender_account_num = $_SESSION['sender_account_num'];
     $recipient_account_num = $_SESSION['recipient_account_num'];
@@ -29,18 +35,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reciept</title>
     <link rel="stylesheet" href="public/CSS/styles.css">
+    <!-- <script>
+        printReciept = ()=>{
+            let printContent = document.getElementsByClassName('print-only')[0].innerHTML
+            let newBody = document.createElement('div')
+            newBody.className = 'print-body'
+            let body = document.getElementsByTagName('body')[0]
+            let fullContent = body.innerHTML
+            newBody.innerHTML = printContent
+            body.innerHTML = ''
+            body.appendChild(newBody)
+            window.print()
+            body.innerHTML = fullContent
+        }
+    </script> -->
 </head>
 <body>
 
-    <div class="wrapper1">
-        <div class="header-text">
+    <div class="wrapper1 no-print">
+        <div class="header-text no-print">
             Cadence Bank
         </div>  
     </div>
 
     <div class="main">
         <div class="reciept-holder">
-            <div class="reciept">
+            <div class="reciept print-only">
                 <u>Transaction Reciept</u> </br>
                 Transaction successful </br></br>
 
@@ -53,10 +73,10 @@
                 TID: <?php echo $transaction_id; ?></br>
                 Transaction time: <?php echo $timestamp; ?></br>
             </div>
-            <div class="button-container">
+            <div class="button-container no-print">
                 <button onclick="window.print()" class="button">Print</button>
             </div>
-            <div class="button-container">
+            <div class="button-container no-print">
                 <a href="home-page.php"><button class="button">Back to homepage</button></a>
             </div>
 
