@@ -129,6 +129,34 @@
     background: url('transactionbg.jpg');
     background-size: cover;
 }
+.wrapper1{
+    background: rgb(2 80 142);
+    padding: 35px 0px;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+.header-text{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: monospace;
+    font-size: xxx-large;
+    color: white;
+    font-weight: 600;
+}
+#head{
+    
+}
+#side{
+    font-size: xx-large;
+    font-weight: 100;
+}
+
 table{
     border : 0.5px solid rgba(0,0,0,0.5);
     border-collapse: collapse;
@@ -151,6 +179,7 @@ tr:nth-child(odd){
 }
 .table-container{
     padding: 20px 50px;
+    margin-top: 60px;
     display: none;
 }
 .main{
@@ -196,7 +225,7 @@ tr:nth-child(odd){
 /* For printing reciept */
 @media print {
     .reciept {
-        displ
+
     }
 
     .main{

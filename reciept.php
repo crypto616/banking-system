@@ -31,6 +31,13 @@
     <link rel="stylesheet" href="public/CSS/styles.css">
 </head>
 <body>
+
+    <div class="wrapper1">
+        <div class="header-text">
+            Cadence Bank
+        </div>  
+    </div>
+
     <div class="main">
         <div class="reciept-holder">
             <div class="reciept">

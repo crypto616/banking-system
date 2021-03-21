@@ -26,6 +26,15 @@
 </head>
 <body>
     <div class="main">
+
+    <div class="wrapper1">
+        <div class="header-text" id="head">
+            CADENCE BANK
+        </div>
+        <div class="header-text" id="side">
+            Home
+        </div>
+    </div>
         <button id="view-customer" type="toggle" onclick="show_customers()">View Customers</button>
         <div class="table-container">
             <table>
