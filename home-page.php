@@ -1,6 +1,6 @@
 <?php
     //connecting to db
-    require_once("connection.php");
+    require_once('connection.php');
 
     //PHP script to take data out of db
     $sql = "SELECT * FROM `cadence bank`.`customers`";
@@ -16,43 +16,54 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
+    <link rel="stylesheet" href="public/CSS/styles.css">
+    <script>
+        function show_customers(){
+            document.getElementsByClassName('table-container')[0].style.display = 'block';
+            document.getElementById('view-customer').style.display = 'none';
+        }
+    </script>
 </head>
 <body>
-    <button type="toggle" onclick="">View Customers</button>
+    <div class="main">
+        <button id="view-customer" type="toggle" onclick="show_customers()">View Customers</button>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>S. No.</th>
+                        <th>Name</th>
+                        <th>Account Number</th>
+                        <th>Email</th>
+                        <th>Contact Number</th>
+                        <th>Location</th>
+                        <th>Current Balance</th>
+                        <th>Operation</th>
+                    </tr>
+                </thead>
 
-    <table>
-        <thead>
-            <tr>
-                <th>S. No.</th>
-                <th>Name</th>
-                <th>Account Number</th>
-                <th>Email</th>
-                <th>Contact Number</th>
-                <th>Location</th>
-                <th>Current Balance</th>
-                <th>Operation</th>
-            </tr>
-        </thead>
-
-        <tbody>
-            <?php 
-                $i = 1;
-                while($row = $result->fetch_assoc()){
-            ?>
-                <tr>
-                    <td><?php echo $i; ?></td>
-                    <td><?php echo $row['name']; ?></td>
-                    <td><?php echo $row['account_num']; ?></td>
-                    <td><?php echo $row['email']; ?></td>
-                    <td><?php echo $row['contact_num']; ?></td>
-                    <td><?php echo $row['location']; ?></td>
-                    <td><?php echo $row['current_balance']; ?></td>
-                    <td><button>Transfer money</button></td>
-                </tr>
-            <?php $i++; } ?>
-        </tbody>
-       
-    
-    </table>
+                <tbody>
+                    <?php 
+                        $i = 1;
+                        while($row = $result->fetch_assoc()){
+                    ?>
+                        <tr>
+                            <td><?php echo $i; ?></td>
+                            <td><?php echo $row['name']; ?></td>
+                            <td><?php echo $row['account_num']; ?></td>
+                            <td><?php echo $row['email']; ?></td>
+                            <td><?php echo $row['contact_num']; ?></td>
+                            <td><?php echo $row['location']; ?></td>
+                            <td><?php echo $row['current_balance']; ?></td>
+                            <!-- Link to send customer_id to the transaction page -->
+                            <td><a href="transaction.php?c_id=<?php echo $row['customer_id']; ?>" target="_blank">Tranfer money</a></td>
+                        </tr>
+                    <?php $i++; } ?>
+                </tbody>
+            
+            
+            </table>
+        </div>
+    </div>
 </body>
 </html>
