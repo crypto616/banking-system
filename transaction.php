@@ -16,6 +16,12 @@
     $name = '';
     $recipient_account_num = '';
 
+    function filterText($str){
+        $str = strip_tags($str);
+        $str = trim($str);
+        $str = addslashes($str);
+        return $str;
+    }
     //Getting the customer_id from the home page, the customer's data is taken out to be displayed
     if(isset($_GET['c_id'])){
         $customer_id = $_GET['c_id'];
@@ -29,14 +35,14 @@
         }
         else {
             header('Location: index.php');
-            $_SESSION['message'] = 'No customer exist with the given ID';
+            $_SESSION['message'] = 'Invalid customer ID';
             $_SESSION['message-css'] = 'error-msg';
             exit;
         }
     }
     //if the customer_id is wrong, the client is redirected back to the home page
     else{
-        $_SESSION['message'] = 'No customer exist with the given ID';
+        $_SESSION['message'] = 'Invalid customer ID';
         $_SESSION['message-css'] = 'error-msg';
         header('Location: index.php');
         exit;
@@ -44,10 +50,10 @@
 
     if(isset($_POST["name"]) && isset($_POST["account_num"]) && isset($_POST["c_account_num"]) && isset($_POST["amount"])){
         $control = 1;
-        $name = $_POST["name"];
-        $recipient_account_num = $_POST["account_num"];
-        $c_account_num = $_POST["c_account_num"];
-        $amount = $_POST["amount"];
+        $name = filterText($_POST["name"]);
+        $recipient_account_num = filterText($_POST["account_num"]);
+        $c_account_num = filterText($_POST["c_account_num"]);
+        $amount = filterText($_POST["amount"]);
         if($name==''){
             $name_error = 'Name required';
             $control = 0;
@@ -116,6 +122,7 @@
             $_SESSION['amount'] = $amount;
             $_SESSION['transaction_id'] = $row['transaction_id'];
             $_SESSION['transaction_time'] = $row['timestamp'];
+            $_SESSION['reciept-working'] = 1;
 
             header('Location: reciept.php');
             exit;

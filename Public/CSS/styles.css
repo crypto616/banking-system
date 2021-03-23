@@ -129,11 +129,14 @@
 }
 .wrapper1{
     background: rgb(2 80 142);
-    padding: 30px 0px;
+    padding: 25px 0px;
     display: flex;
     width: 100%;
     justify-content: space-between;
     align-items: center;
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
 }
 .header-text{
     flex: 1;

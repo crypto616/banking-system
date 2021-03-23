@@ -32,6 +32,7 @@ Batch: March 2021
         function show_customers(){
             document.getElementsByClassName('table-container')[0].style.display = 'block';
             document.getElementById('view-customer').style.display = 'none';
+            document.getElementsByClassName('error-msg')[0].style.display = 'none';
         }
     </script>
 </head>
@@ -48,7 +49,7 @@ Batch: March 2021
         <?php 
             if(isset($_SESSION['message'])){
                 ?>
-                <div class="message <?php echo $_SESSION['message-css'] ?>">
+                <div class="message error-msg">
                     <?php echo $_SESSION['message']; ?>
                 </div>
                 <?php

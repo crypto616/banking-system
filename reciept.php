@@ -3,6 +3,7 @@
     session_start();
     
     if(!isset($_SESSION['transaction_successfull'])){
+        if($_SESSION['reciept-working']==0){}
         $_SESSION['message'] = 'No transaction has been processed!';
         $_SESSION['message-css'] = 'error-msg';
         header('Location: index.php');
@@ -35,20 +36,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reciept</title>
     <link rel="stylesheet" href="public/CSS/styles.css">
-    <!-- <script>
-        printReciept = ()=>{
-            let printContent = document.getElementsByClassName('print-only')[0].innerHTML
-            let newBody = document.createElement('div')
-            newBody.className = 'print-body'
-            let body = document.getElementsByTagName('body')[0]
-            let fullContent = body.innerHTML
-            newBody.innerHTML = printContent
-            body.innerHTML = ''
-            body.appendChild(newBody)
-            window.print()
-            body.innerHTML = fullContent
-        }
-    </script> -->
+  
 </head>
 <body>
 
@@ -79,7 +67,7 @@
                 <button onclick="window.print()" class="button">Print</button>
             </div>
             <div class="button-container no-print">
-                <a href="index.php"><button class="button">Back to homepage</button></a>
+                <a href="index.php"><button onclick="<?php $_SESSION['reciept-working']=0; ?>" class="button">Back to homepage</button></a>
             </div>
 
         </div>
@@ -87,3 +75,5 @@
     
 </body>
 </html>
+
+<?php session_destroy(); ?>
