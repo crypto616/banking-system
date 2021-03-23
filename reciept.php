@@ -52,6 +52,8 @@
 </head>
 <body>
 
+    <img src="public/CSS/transactionbg.jpg" class="index-bg no-print">
+
     <div class="wrapper1 no-print">
         <div class="header-text no-print">
             Cadence Bank
@@ -77,7 +79,7 @@
                 <button onclick="window.print()" class="button">Print</button>
             </div>
             <div class="button-container no-print">
-                <a href="home-page.php"><button class="button">Back to homepage</button></a>
+                <a href="index.php"><button class="button">Back to homepage</button></a>
             </div>
 
         </div>

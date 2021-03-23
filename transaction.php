@@ -3,10 +3,10 @@
     require_once("connection.php");
 
 
-    if(isset($_SESSION['transaction_successfull'])){
-        header('Location: reciept.php');
-        exit;
-    }
+    // if(isset($_SESSION['transaction_successfull'])){
+    //     header('Location: reciept.php');
+    //     exit;
+    // }
     //variable declaration
     $control = 0;
     $recipient_account_num_error = '';
@@ -138,6 +138,7 @@
     <script src="https://kit.fontawesome.com/2e3ffa36c7.js" crossorigin="anonymous"></script>
 </head>
 <body>
+    <img src="public/CSS/transactionbg.jpg" class="index-bg">
 
     <div class="wrapper1">
         <div class="header-text">

@@ -124,7 +124,7 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
-    background: url('transactionbg.jpg');
+    /*background: url('transactionbg.jpg');*/
     background-size: cover;
 }
 .wrapper1{
