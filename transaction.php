@@ -7,6 +7,7 @@
     //     header('Location: reciept.php');
     //     exit;
     // }
+
     //variable declaration
     $control = 0;
     $recipient_account_num_error = '';
@@ -76,7 +77,10 @@
         if($c_account_num==''){
             $c_account_error = 'Please confirm your account number';
             $control = 0;
-
+        }
+        else if($sender_acc_num==$recipient_account_num){
+            $recipient_account_num_error = 'Cannot transfer money to own account';
+            $control = 0;
         }
         else if($c_account_num!=$recipient_account_num){
             $c_account_error = 'Account numbers not matched';
