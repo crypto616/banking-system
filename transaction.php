@@ -213,7 +213,7 @@
                         </div>
                         <div class="input-container">
                             <label for="amount">Amount </label>
-                            <input type="number" name="amount" class="input" >
+                            <input type="number" step="0.01" name="amount" class="input" >
                             <div class="error">
                                 <?php echo $amount_error; ?>
                             </div>
