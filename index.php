@@ -1,13 +1,3 @@
-<!-- 
-
-Name: Rhythm Sharma
-Internship: Web Development
-Task: Basic Banking System
-Batch: March 2021 
-
--->
-
-
 <?php
     //connecting to db
     session_start();
